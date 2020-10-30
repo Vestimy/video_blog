@@ -10,18 +10,15 @@ class VideoSchema(Schema):
     description = fields.String(required=True, validate=[
         validate.Length(max=500)
     ])
-
+    message = fields.String(dump_only=True)
 
 class UserSchema(Schema):
     name = fields.String(required=True, validate=[
-        validate.Length(max=250),
-    ])
+        validate.Length(max=250)])
     email = fields.String(required=True, validate=[
-        validate.Length(max=255),
-    ])
+        validate.Length(max=255)])
     password = fields.String(required=True, validate=[
-        validate.Length(max=255),
-    ], load_only=True)
+        validate.Length(max=255)], load_only=True)
     videos = fields.Nested(VideoSchema, many=True, dump_only=True)
 
 
